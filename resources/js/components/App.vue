@@ -12,7 +12,7 @@
         placeholder="Buscar..." 
         @keyup.enter="fetchData" 
       />
-      <button @click="fetchData">Buscar</button>
+      <button @click="searchData">Buscar</button>
     </div>
     <table class="results-table">
       <thead>
@@ -70,6 +70,10 @@ export default {
       } catch (error) {
         console.error("Erro ao buscar municípios:", error);
       }
+    },
+    searchData() {
+      this.currentPage = 1; // Redefine a página atual para 1
+      this.fetchData();
     },
     changePage(page) {
       this.currentPage = page;
