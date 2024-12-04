@@ -4,6 +4,7 @@ namespace App\Services\Municipality;
 
 use App\Providers\MunicipalityProvider;
 use Exception;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class MunicipalityService
 {
@@ -18,20 +19,26 @@ class MunicipalityService
     {
         try{
             $provider = env('MUNICIPALITIES_PROVIDER', 'ibge');
+
+            $searchTerm = $request->search_term ?? '';
+            $take = (int) ($request->take ?? 10);
+            $page = (int) ($request->page ?? 1);
  
             $data = match ($provider) {
                 'ibge' => $this->municipalityProvider->fetchFromIbge($uf),
                 'brasilapi' => $this->municipalityProvider->fetchFromBrasilApi($uf),
-                default => throw new Exception("Provedor $provider não suportado."),
+                default => throw new Exception("Provedor $provider não suportado.", 400),
             };
 
-            $result = $this->normalizeMunicipalities($data, $provider);
+            $normalizedMunicipalitie = $this->normalizeMunicipalities($data, $provider);
             
-            $municipalities = $this->filterMunicipalities($result, $request->search_term ?? null);            
+            $filteredMunicipalities = $this->filterMunicipalities($normalizedMunicipalitie, $searchTerm);
+
+            $paginatedMunicipalities = $this->paginate($filteredMunicipalities, $take, $page);
 
             return [
                 'status' => true,
-                'data' => $municipalities
+                'data' => $paginatedMunicipalities
             ];
         }catch(Exception $error){
             return [
@@ -67,7 +74,7 @@ class MunicipalityService
         return $normalizedMunicipalitie;
     }
 
-    private function filterMunicipalities(array $municipalities, string|null $searchTerm){
+    private function filterMunicipalities(array $municipalities, string $searchTerm){
         if ($municipalities) {
             $Municipalities = array_filter($municipalities, function ($municipio) use ($searchTerm) {
                 return stripos($municipio['name'], $searchTerm) !== false;
@@ -77,5 +84,19 @@ class MunicipalityService
         return $Municipalities;
     }
 
+    private function paginate(array $municipalities, int $perPage, int $currentPage)
+    {
+        $currentPage = max(1, $currentPage);
+        $offset = ($currentPage - 1) * $perPage;
+        $paginatedMunicipalities = array_slice($municipalities, $offset, $perPage);
+
+        return new LengthAwarePaginator(
+            $paginatedMunicipalities,
+            count($paginatedMunicipalities),
+            $perPage,    
+            $currentPage,
+            ['path' => url()->current()]
+        );
+    }
 }
 
