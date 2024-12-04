@@ -1,0 +1,90 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/127.0.0.1:8000"
+        }
+    ],
+    "info": {
+        "name": "Documenta\u00e7\u00e3o da API",
+        "_postman_id": "a15a8530-0f6e-45c0-badf-655b071364eb",
+        "description": "Esta API fornece acesso aos recursos do sistema, como munic\u00edpios, estados e muito mais.",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Munic\u00edpios",
+            "description": "",
+            "item": [
+                {
+                    "name": "Retorna a lista de munic\u00edpios.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/municipios\/:uf",
+                            "query": [
+                                {
+                                    "key": "search_term",
+                                    "value": "Jo%C3%A3o",
+                                    "description": "optional O termo para buscar munic\u00edpios.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "take",
+                                    "value": "10",
+                                    "description": "optional O n\u00famero de itens por p\u00e1gina. Default: 10.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "optional A p\u00e1gina atual. Default: 1.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/municipios\/:uf?search_term=Jo%C3%A3o&take=10&page=1",
+                            "variable": [
+                                {
+                                    "id": "uf",
+                                    "key": "uf",
+                                    "value": "pb",
+                                    "description": "A sigla da UF (estado)."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n   \"status\": true,\n   \"data\": {\n       \"current_page\": 1,\n       \"data\": [\n           {\n               \"name\": \"S\u00e3o Jo\u00e3o Do Rio Do Peixe\",\n               \"ibge_code\": \"2500700\"\n           },\n       ],\n       \"first_page_url\": \"http:\/\/127.0.0.1:8000\/api\/municipios\/pb?page=1\",\n       \"from\": 1,\n       \"last_page\": 1,\n       \"last_page_url\": \"http:\/\/127.0.0.1:8000\/api\/municipios\/pb?page=1\",\n       \"links\": [\n           {\n               \"url\": null,\n               \"label\": \"&laquo; Previous\",\n               \"active\": false\n           },\n           {\n               \"url\": \"http:\/\/127.0.0.1:8000\/api\/municipios\/pb?page=1\",\n               \"label\": \"1\",\n               \"active\": true\n           },\n           {\n               \"url\": null,\n               \"label\": \"Next &raquo;\",\n               \"active\": false\n           }\n       ],\n       \"next_page_url\": null,\n       \"path\": \"http:\/\/127.0.0.1:8000\/api\/municipios\/pb\",\n       \"per_page\": 4,\n       \"prev_page_url\": null,\n       \"to\": 3,\n       \"total\": 3\n   }\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

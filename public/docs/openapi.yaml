@@ -1,0 +1,72 @@
+openapi: 3.0.3
+info:
+  title: 'Documentação da API'
+  description: 'Esta API fornece acesso aos recursos do sistema, como municípios, estados e muito mais.'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://127.0.0.1:8000'
+paths:
+  '/api/municipios/{uf}':
+    get:
+      summary: 'Retorna a lista de municípios.'
+      operationId: retornaAListaDeMunicpios
+      description: ''
+      parameters:
+        -
+          in: query
+          name: search_term
+          description: 'optional O termo para buscar municípios.'
+          example: João
+          required: false
+          schema:
+            type: string
+            description: 'optional O termo para buscar municípios.'
+            example: João
+            nullable: false
+        -
+          in: query
+          name: take
+          description: 'optional O número de itens por página. Default: 10.'
+          example: 10
+          required: false
+          schema:
+            type: integer
+            description: 'optional O número de itens por página. Default: 10.'
+            example: 10
+            nullable: false
+        -
+          in: query
+          name: page
+          description: 'optional A página atual. Default: 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'optional A página atual. Default: 1.'
+            example: 1
+            nullable: false
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n   \"status\": true,\n   \"data\": {\n       \"current_page\": 1,\n       \"data\": [\n           {\n               \"name\": \"São João Do Rio Do Peixe\",\n               \"ibge_code\": \"2500700\"\n           },\n       ],\n       \"first_page_url\": \"http://127.0.0.1:8000/api/municipios/pb?page=1\",\n       \"from\": 1,\n       \"last_page\": 1,\n       \"last_page_url\": \"http://127.0.0.1:8000/api/municipios/pb?page=1\",\n       \"links\": [\n           {\n               \"url\": null,\n               \"label\": \"&laquo; Previous\",\n               \"active\": false\n           },\n           {\n               \"url\": \"http://127.0.0.1:8000/api/municipios/pb?page=1\",\n               \"label\": \"1\",\n               \"active\": true\n           },\n           {\n               \"url\": null,\n               \"label\": \"Next &raquo;\",\n               \"active\": false\n           }\n       ],\n       \"next_page_url\": null,\n       \"path\": \"http://127.0.0.1:8000/api/municipios/pb\",\n       \"per_page\": 4,\n       \"prev_page_url\": null,\n       \"to\": 3,\n       \"total\": 3\n   }\n}"
+      tags:
+        - Municípios
+      security: []
+    parameters:
+      -
+        in: path
+        name: uf
+        description: 'A sigla da UF (estado).'
+        example: pb
+        required: true
+        schema:
+          type: string
+tags:
+  -
+    name: Municípios
+    description: ''
