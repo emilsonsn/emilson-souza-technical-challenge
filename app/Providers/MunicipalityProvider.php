@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Exception;
 use Illuminate\Support\Facades\Http;
 
 class MunicipalityProvider
@@ -12,7 +13,7 @@ class MunicipalityProvider
         $response = Http::get($url);
 
         if (!$response->successful()) {
-            throw new \Exception("Erro ao buscar municípios do IBGE");
+            throw new Exception("Erro ao buscar municípios do IBGE", 400);
         }
 
         return $response->json();
@@ -24,7 +25,7 @@ class MunicipalityProvider
         $response = Http::get($url);
 
         if (!$response->successful()) {
-            throw new \Exception("Erro ao buscar municípios da Brasil API");
+            throw new Exception("Erro ao buscar municípios da Brasil API", 400);
         }
 
         return $response->json();

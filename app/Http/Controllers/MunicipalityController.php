@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Municipalitie\MunicipalitieService;
 use App\Services\Municipality\MunicipalityService;
 use Illuminate\Http\Request;
 
