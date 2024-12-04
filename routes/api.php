@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\MunicipioController;
+use App\Http\Controllers\MunicipalityController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('municipios/{uf}', [MunicipioController::class, 'index']);
+Route::get('municipios/{uf}', [MunicipalityController::class, 'index']);

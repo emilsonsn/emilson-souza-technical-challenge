@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Http;
 
-class MunicipioProvider
+class MunicipalityProvider
 {
     public function fetchFromIbge(string $uf)
     {
