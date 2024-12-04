@@ -1,66 +1,137 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# README
 
-## About Laravel
+## Introdução
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Este é um projeto desenvolvido para um desafio técnico. Ele consiste em uma API Laravel que permite a busca de municípios brasileiros, integrada a um front-end construído com Vue.js. O projeto utiliza Docker para containerização, garantindo um ambiente de desenvolvimento e produção padronizado.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+A aplicação foi configurada na nuvem em um servidor EC2 da amazon e está disponível em:
+<a target="_blank" href="http://54.89.180.101">http://54.89.180.101</a>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Introdução
 
-## Learning Laravel
+Este é um projeto desenvolvido para um desafio técnico. Ele consiste em uma API Laravel que permite a busca de municípios brasileiros, integrada a um front-end construído com Vue.js. O projeto utiliza Docker para containerização, garantindo um ambiente de desenvolvimento e produção padronizado.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Requisitos do desafio supridos
+- ✔️ Criar uma rota para pesquisar e listar os municípios de uma UF.
+- ✔️ Resposta da requisição deve conter, uma lista de municípios com os seguintes
+- campos:
+- ✔️ name : Nome do município.
+- ✔️ ibge_code: Código IBGE desse município.
+- ✔️ Deve ser utilizado como providers as seguintes APIs:
+- ✔️ Brasil API - https://brasilapi.com.br/api/ibge/municipios/v1/RS
+- ✔️ IBGE - https://servicodados.ibge.gov.br/api/v1/localidades/estados/rs/municipios
+- ✔️ O provider usado deve ser definido via variável de ambiente.
+- ✔️ Deve conter testes unitários e de integração.
+- Bônus:
+- ✔️ Uso de Cache.
+- ✔️ Tratamento de exceções.
+- ✔️ Documentação do projeto (pensando na possibilidade do projeto crescer e
+- possuir outros endpoints futuramente).
+- ✔️ Github Actions.
+- ✔️ Commits atômicos e descritivos.
+- ✔️ Paginação dos resultados.
+- ✔️ Criação de SPA consumindo o endpoint criado.
+- ✔️ Disponibilização do projeto em algum ambiente cloud.
+- ✔️ Conteinerização.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Documentação da API
+A documentação da API foi gerada usando o pacote `knuckleswtf/scribe`. Ela contém as informações detalhadas sobre as rotas disponíveis, parâmetros aceitos e exemplos de respostas.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+A documentação deve ser gerada rodando o comando: 
+```bash
+php artisan scribe:generate
+```
+Documentação acessível em: <a target="_blank" href="http://54.89.180.101/docs">http://54.89.180.101/docs</a>
 
-## Laravel Sponsors
+## Instalação
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Pré-requisitos
 
-### Premium Partners
+- Docker e Docker Compose instalados.
+- Node.js e npm (opcional para rodar o front-end localmente sem Docker).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Passos
 
-## Contributing
+1. Clone o repositório:
+   ```bash
+   git clone <link-do-repositorio>
+   cd <nome-da-pasta-do-projeto>
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. Copie o arquivo `.env.example` para `.env`:
+   ```bash
+   cp .env.example .env
+   ```
 
-## Code of Conduct
+3. Configure as variáveis de ambiente no arquivo `.env` conforme necessário.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. Instale as dependências do projeto:
+   - Caso vá rodar localmente:
+     ```bash
+     composer install
+     npm install
+     npm run build
+     ```
 
-## Security Vulnerabilities
+## Como rodar com Docker
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Monte e inicie os containers:
+   ```bash
+   docker-compose up -d
+   ```
 
-## License
+2. Acesse a aplicação em seu navegador:
+   ```
+   http://localhost
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+3. Para verificar os logs:
+   ```bash
+   docker-compose logs -f
+   ```
+
+4. Caso precise recriar a imagem:
+   ```bash
+   docker-compose down --volumes
+   docker-compose up --build
+   ```
+
+## Estrutura de Pastas
+
+Abaixo, uma visão geral da estrutura do projeto:
+
+```
+.
+├── app/                     # Código principal do back-end
+├── bootstrap/               # Arquivos de bootstrap da aplicação
+├── config/                  # Configurações do Laravel
+├── docker/                  # Configurações do Docker
+│   ├── nginx/               # Configuração do Nginx
+├── public/                  # Arquivos públicos
+├── resources/               # Recursos como views, assets e arquivos do Vue.js
+│   ├── js/
+│   └── css/
+├── routes/                  # Definições de rotas da aplicação
+├── storage/                 # Arquivos de cache, logs e uploads
+├── tests/                   # Testes automatizados
+├── vite.config.js           # Configuração do Vite
+├── docker-compose.yml       # Configuração do Docker Compose
+└── Dockerfile               # Configuração do Docker Compose
+           
+```
+
+## Como rodar os testes
+
+1. Execute os testes com o seguinte comando:
+   ```bash
+   php artisan test
+   ```
+
+2. Para rodar um teste específico:
+   ```bash
+   php artisan test --filter NomeDoTeste
+   ```
+
+3. Certifique-se de que o ambiente está configurado corretamente:
+   - O arquivo `.env` deve estar com as configurações de teste adequadas.
