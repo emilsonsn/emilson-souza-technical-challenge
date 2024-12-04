@@ -112,7 +112,7 @@ export default {
   padding: 8px;
 }
 .results-table th {
-  background-color: #f4f4f4;
+  background-color: black;
 }
 .pagination {
   display: flex;
