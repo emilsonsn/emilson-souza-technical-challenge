@@ -10,4 +10,8 @@ export default defineConfig({
         }),
         vue(),
     ],
+    build: {
+        outDir: 'public/build',
+        emptyOutDir: true,
+    },
 });
