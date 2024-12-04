@@ -3,6 +3,7 @@
 namespace App\Services\Municipality;
 
 use App\Providers\MunicipalityProvider;
+use App\Utils\StateValidator;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -18,6 +19,8 @@ class MunicipalityService
     public function getMunicipalities($request, $uf)
     {
         try{
+            StateValidator::validate($uf);
+
             $provider = env('MUNICIPALITIES_PROVIDER', 'ibge');
 
             $searchTerm = $request->search_term ?? '';
