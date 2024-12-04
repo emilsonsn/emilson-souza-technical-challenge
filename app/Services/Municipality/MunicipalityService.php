@@ -6,6 +6,7 @@ use App\Providers\MunicipalityProvider;
 use App\Utils\StateValidator;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Cache;
 
 class MunicipalityService
 {
@@ -26,6 +27,12 @@ class MunicipalityService
             $searchTerm = $request->search_term ?? '';
             $take = (int) ($request->take ?? 10);
             $page = (int) ($request->page ?? 1);
+
+            $cacheKey = "municipalities:{$uf}:{$provider}:{$searchTerm}:{$take}:{$page}";
+
+            if (Cache::has($cacheKey)) {
+                return Cache::get($cacheKey);
+            }
  
             $data = match ($provider) {
                 'ibge' => $this->municipalityProvider->fetchFromIbge($uf),
@@ -39,10 +46,14 @@ class MunicipalityService
 
             $paginatedMunicipalities = $this->paginate($filteredMunicipalities, $take, $page);
 
-            return [
+            $result = [
                 'status' => true,
                 'data' => $paginatedMunicipalities
             ];
+
+            Cache::put($cacheKey, $result, now()->addMinutes(5));
+
+            return $result;
         }catch(Exception $error){
             return [
                 'status' => false,
