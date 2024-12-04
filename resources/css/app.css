@@ -1,0 +1,114 @@
+/* Container geral */
+.container {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título */
+  .title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #fff;
+    background-color: #2c3e50;
+    padding: 15px;
+    border-radius: 6px;
+  }
+  
+  /* Filtros */
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 20px;
+  }
+  
+  .filters select,
+  .filters input,
+  .filters button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 30%;
+  }
+  
+  .filters button{
+    background-color: #26abd3;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .filters input {
+    width: 40%;
+  }
+  
+  /* Tabela */
+  .results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .results-table th,
+  .results-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .results-table th {
+    background-color: #2c3e50;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .results-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .results-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Paginação */
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination button,
+  .pagination select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .pagination button:disabled {
+    background-color: #ccc;
+  }
+  
+  .pagination button:hover {
+    background-color: #34495e;
+  }
+  
+  .pagination select {
+    width: 20%;
+  }
+  
+  .pagination span {
+    font-size: 16px;
+  }
+  

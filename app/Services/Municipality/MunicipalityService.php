@@ -106,7 +106,7 @@ class MunicipalityService
 
         return new LengthAwarePaginator(
             $paginatedMunicipalities,
-            count($paginatedMunicipalities),
+            count($municipalities),
             $perPage,    
             $currentPage,
             ['path' => url()->current()]
